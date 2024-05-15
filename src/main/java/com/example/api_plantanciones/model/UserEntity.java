@@ -46,6 +46,18 @@ public class UserEntity implements UserDetails {
                 .toList();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String getPassword() {
         return this.password;
