@@ -33,6 +33,7 @@ public class AuthController {
         return this.userService.save(userDTO);
     }
 
+
     @PostMapping("/auth/login")
     public LoginResponse login(@RequestBody LoginRequest loginDTO){
         Authentication authDTO = new UsernamePasswordAuthenticationToken(loginDTO.userName(), loginDTO.password());
