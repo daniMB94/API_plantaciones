@@ -14,8 +14,13 @@ public interface PlantationService {
     // Create
     Plantation save(Plantation plantation);
 
+    // Update
+    Plantation update(Long id, Plantation plantation);
+
     // Delete
     void deleteById(Long id);
     void deleteAll();
+
+
 
 }
