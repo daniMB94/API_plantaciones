@@ -2,7 +2,10 @@ package com.example.api_plantanciones.model;
 
 import jakarta.persistence.*;
 
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -15,13 +18,22 @@ public class Sensor {
     private String installationPlace;
     private Date installationDate;
 
+    @ManyToOne
+    @JoinColumn(name = "plantation_id")
+    private Plantation plantation;
+
+    @OneToMany(mappedBy = "sensor")
+    private List<Register> registers = new ArrayList<Register>();
+
     public Sensor() {
     }
 
-    public Sensor(Long id, String installationPlace, Date installationDate) {
+    public Sensor(Long id, String installationPlace, Date installationDate, Plantation plantation, List<Register> registers) {
         this.id = id;
         this.installationPlace = installationPlace;
         this.installationDate = installationDate;
+        this.plantation = plantation;
+        this.registers = registers;
     }
 
     public Long getId() {
@@ -46,5 +58,32 @@ public class Sensor {
 
     public void setInstallationDate(Date installationDate) {
         this.installationDate = installationDate;
+    }
+
+    public Plantation getPlantation() {
+        return plantation;
+    }
+
+    public void setPlantation(Plantation plantation) {
+        this.plantation = plantation;
+    }
+
+    public List<Register> getRegisters() {
+        return registers;
+    }
+
+    public void setRegisters(List<Register> registers) {
+        this.registers = registers;
+    }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "id=" + id +
+                ", installationPlace='" + installationPlace + '\'' +
+                ", installationDate=" + installationDate +
+                ", plantation=" + plantation +
+                ", registers=" + registers +
+                '}';
     }
 }

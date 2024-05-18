@@ -18,15 +18,20 @@ public class Register {
     private Date dateOfDataRegistration;
     private LocalTime timeOfDataRegistration;
 
+    @ManyToOne
+    @JoinColumn(name = "sensor_id")
+    private Sensor sensor;
+
     public Register() {
     }
 
-    public Register(Long id, Long temperature, Long humidity, Date dateOfDataRegistration, LocalTime timeOfDataRegistration) {
+    public Register(Long id, Long temperature, Long humidity, Date dateOfDataRegistration, LocalTime timeOfDataRegistration, Sensor sensor) {
         this.id = id;
         this.temperature = temperature;
         this.humidity = humidity;
         this.dateOfDataRegistration = dateOfDataRegistration;
         this.timeOfDataRegistration = timeOfDataRegistration;
+        this.sensor = sensor;
     }
 
     public Long getId() {
@@ -67,6 +72,26 @@ public class Register {
 
     public void setTimeOfDataRegistration(LocalTime timeOfDataRegistration) {
         this.timeOfDataRegistration = timeOfDataRegistration;
+    }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
+    }
+
+    @Override
+    public String toString() {
+        return "Register{" +
+                "id=" + id +
+                ", temperature=" + temperature +
+                ", humidity=" + humidity +
+                ", dateOfDataRegistration=" + dateOfDataRegistration +
+                ", timeOfDataRegistration=" + timeOfDataRegistration +
+                ", sensor=" + sensor +
+                '}';
     }
 }
 
