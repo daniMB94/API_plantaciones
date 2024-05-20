@@ -8,7 +8,7 @@ public interface SensorService {
 
 //    CRUD
     List<Sensor> findAll();
-    Sensor save(Sensor sensor);
+    Sensor save(Sensor sensor, Long id);
     Sensor update(Long id, Sensor sensor);
     void deleteById(Long id);
 }
