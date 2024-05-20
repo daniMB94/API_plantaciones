@@ -1,6 +1,7 @@
 package com.example.api_plantanciones.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -20,6 +21,7 @@ public class Register {
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")
+    @JsonIgnore
     private Sensor sensor;
 
     public Register() {

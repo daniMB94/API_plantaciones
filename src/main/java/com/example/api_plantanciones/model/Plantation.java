@@ -1,6 +1,7 @@
 package com.example.api_plantanciones.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Plantation {
     private String longitude;
 
     @OneToMany(mappedBy = "plantation")
+    @JsonIgnore
     private List<Sensor> sensors = new ArrayList<>();
 
     public Plantation() {

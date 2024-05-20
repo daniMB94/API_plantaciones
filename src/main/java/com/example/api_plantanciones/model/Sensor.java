@@ -1,5 +1,6 @@
 package com.example.api_plantanciones.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -20,9 +21,11 @@ public class Sensor {
 
     @ManyToOne
     @JoinColumn(name = "plantation_id")
+    @JsonIgnore
     private Plantation plantation;
 
     @OneToMany(mappedBy = "sensor")
+    @JsonIgnore
     private List<Register> registers = new ArrayList<Register>();
 
     public Sensor() {
