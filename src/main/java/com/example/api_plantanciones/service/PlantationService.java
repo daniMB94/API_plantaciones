@@ -21,6 +21,4 @@ public interface PlantationService {
     void deleteById(Long id);
     void deleteAll();
 
-
-
 }

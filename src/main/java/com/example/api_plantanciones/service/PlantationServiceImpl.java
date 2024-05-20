@@ -56,11 +56,11 @@ public class PlantationServiceImpl implements PlantationService {
 
     @Override
     public void deleteById(Long id) {
-
+        this.repository.deleteById(id);
     }
 
     @Override
     public void deleteAll() {
-
+        this.repository.deleteAll();
     }
 }
