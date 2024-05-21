@@ -31,8 +31,15 @@ public class SensorController {
     }
 
     @PostMapping("/new/{associatedPlantationId}")
-    public ResponseEntity<Sensor> save(@RequestBody Sensor sensor, @PathVariable Long id) {
-        Sensor savedSensor = sensorService.save(sensor, id);
+    public ResponseEntity<Sensor> save(@RequestBody Sensor sensor, @PathVariable Long associatedPlantationId) {
+        Sensor savedSensor = sensorService.save(sensor, associatedPlantationId);
         return ResponseEntity.ok(savedSensor);
     }
+
+    @PutMapping("/update/id/{id}")
+    public ResponseEntity<Sensor> update(@PathVariable Long id, @RequestBody Sensor sensor) {
+        Sensor updatedSensor = this.sensorService.update(id, sensor);
+        return ResponseEntity.ok(updatedSensor);
+    }
+
 }

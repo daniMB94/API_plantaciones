@@ -14,6 +14,7 @@ public class SensorServiceImpl implements SensorService {
 
 //    Inyectamos el repositorio
     private final SensorRepository repository;
+//    También hemos inyectado el repositorio de Plantation porque se usará en el endpoint /api/sensors/new
     private final PlantationRepository plantationRepository;
 
     public SensorServiceImpl(SensorRepository repository, PlantationRepository plantationRepository) {
