@@ -42,4 +42,10 @@ public class SensorController {
         return ResponseEntity.ok(updatedSensor);
     }
 
+    @DeleteMapping("/delete/id/{id}")
+    public ResponseEntity<Sensor> deleteById(@PathVariable Long id) {
+        this.sensorService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

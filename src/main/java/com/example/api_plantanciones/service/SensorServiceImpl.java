@@ -50,10 +50,9 @@ public class SensorServiceImpl implements SensorService {
     public Sensor update(Long id, Sensor sensor) {
         Optional<Sensor> optionalSensor = this.repository.findById(id);
 
+//        Solo se actualizará la fecha de instalación y el lugar de instalación
         if(optionalSensor.isPresent()) {
             Sensor updatedSensor = optionalSensor.get();
-            updatedSensor.setPlantation(sensor.getPlantation());
-            updatedSensor.setRegisters(sensor.getRegisters());
             updatedSensor.setInstallationDate(sensor.getInstallationDate());
             updatedSensor.setInstallationPlace(sensor.getInstallationPlace());
 
