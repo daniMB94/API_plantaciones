@@ -4,9 +4,7 @@ package com.example.api_plantanciones.controller;
 import com.example.api_plantanciones.model.Register;
 import com.example.api_plantanciones.service.RegisterService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +27,14 @@ public class RegisterController {
         return ResponseEntity.ok(registers);
     }
 
+    @PostMapping("/new/{associatedSensorId}")
+    public ResponseEntity<Register> save(@RequestBody Register register ,@PathVariable Long associatedSensorId) {
+        Register savedRegister = registerService.save(register, associatedSensorId);
+        return ResponseEntity.ok(savedRegister);
+    }
+/*
+    @PutMapping("/update/id/{id]")
+    public ResponseEntity<Register> update(@PathVariable Long id,)
 
-
+ */
 }
