@@ -6,6 +6,7 @@ import com.example.api_plantanciones.repository.PlantationRepository;
 import com.example.api_plantanciones.repository.SensorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,5 +66,16 @@ public class SensorServiceImpl implements SensorService {
     @Override
     public void deleteById(Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public String tempYHumeMediaPorFecha(Long sensorId, Date initialDate, Date finalDate) {
+        Optional<Sensor> optionalSensor = this.repository.findById(sensorId);
+
+        if(optionalSensor.isPresent()) {
+            Sensor sensor = optionalSensor.get();
+
+        }
+        return "";
     }
 }

@@ -32,9 +32,17 @@ public class RegisterController {
         Register savedRegister = registerService.save(register, associatedSensorId);
         return ResponseEntity.ok(savedRegister);
     }
-/*
-    @PutMapping("/update/id/{id]")
-    public ResponseEntity<Register> update(@PathVariable Long id,)
 
- */
+    @PutMapping("/update/id/{id}")
+    public ResponseEntity<Register> update(@PathVariable Long id, @RequestBody Register register) {
+        Register updatedRegister = this.registerService.update(id, register);
+        return ResponseEntity.ok(updatedRegister);
+    }
+
+    @DeleteMapping("/delete/id/{id}")
+    public ResponseEntity<Register> delete(@PathVariable Long id) {
+        this.registerService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

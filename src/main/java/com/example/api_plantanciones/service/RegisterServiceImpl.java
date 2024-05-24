@@ -45,11 +45,23 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Register update(Long id, Register register) {
-        return null;
+        Optional<Register> optionalRegister = this.repository.findById(id);
+
+        if(optionalRegister.isPresent()) {
+            Register updatedRegister = optionalRegister.get();
+            updatedRegister.setHumidity(register.getHumidity());
+            updatedRegister.setTemperature(register.getTemperature());
+            updatedRegister.setDateOfDataRegistration(register.getDateOfDataRegistration());
+            updatedRegister.setTimeOfDataRegistration(register.getTimeOfDataRegistration());
+
+            return this.repository.save(updatedRegister);
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void deleteById(Long id) {
-
+        this.repository.deleteById(id);
     }
 }
