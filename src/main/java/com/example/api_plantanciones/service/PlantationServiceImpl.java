@@ -1,6 +1,7 @@
 package com.example.api_plantanciones.service;
 
 import com.example.api_plantanciones.model.Plantation;
+import com.example.api_plantanciones.model.Register;
 import com.example.api_plantanciones.repository.PlantationRepository;
 import org.springframework.stereotype.Service;
 
@@ -62,5 +63,10 @@ public class PlantationServiceImpl implements PlantationService {
     @Override
     public void deleteAll() {
         this.repository.deleteAll();
+    }
+
+    @Override
+    public List<Register> plantationAllRegisters(Long id) {
+        return List.of();
     }
 }

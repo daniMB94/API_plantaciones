@@ -2,7 +2,6 @@ package com.example.api_plantanciones.controller;
 
 import com.example.api_plantanciones.model.Plantation;
 import com.example.api_plantanciones.service.PlantationService;
-import com.example.api_plantanciones.service.SensorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,6 +60,10 @@ public class PlantationController {
         this.plantationService.deleteAll();
         return ResponseEntity.noContent().build();
     }
+/*
+    @GetMapping("/id/{id}/all/registers")
+    public PlantationAllRegsiters plantationAllRegisters(@PathVariable Long id) {
 
-
+    }
+*/
 }
