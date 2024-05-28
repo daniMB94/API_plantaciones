@@ -12,6 +12,7 @@ public interface RegisterService {
     Register save(Register register, Long id);
     Register update(Long id, Register register);
     void deleteById(Long id);
-
+//  Other queries
+    List<Register> getAllRegistersByPlantationId(Long plantationId);
 
 }

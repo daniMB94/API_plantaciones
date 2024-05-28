@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
@@ -63,5 +64,15 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public void deleteById(Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public List<Register> getAllRegistersByPlantationId(Long plantationId) {
+        // Obtenenemos una lista de sensores para un id de plantación
+        List<Sensor> sensors = sensorRepository.findAllByPlantationId(plantationId);
+        // Obtenenemos los ids de los sensores de dicha plantación
+        List<Long> sensorIds = sensors.stream().map(Sensor::getId).collect(Collectors.toList());
+        // Llamamos al método creado en el repositorio de register
+        return repository.findAllBySensorIdIn(sensorIds);
     }
 }

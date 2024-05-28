@@ -60,10 +60,5 @@ public class PlantationController {
         this.plantationService.deleteAll();
         return ResponseEntity.noContent().build();
     }
-/*
-    @GetMapping("/id/{id}/all/registers")
-    public PlantationAllRegsiters plantationAllRegisters(@PathVariable Long id) {
 
-    }
-*/
 }

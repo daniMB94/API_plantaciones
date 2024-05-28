@@ -1,6 +1,7 @@
 package com.example.api_plantanciones.controller;
 
 
+import com.example.api_plantanciones.dto.register.RegisterAllByPlantation;
 import com.example.api_plantanciones.model.Register;
 import com.example.api_plantanciones.service.RegisterService;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +45,12 @@ public class RegisterController {
         this.registerService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/all/byPlantationId/{id}")
+    public ResponseEntity<RegisterAllByPlantation> getAllRegistersByPlantationId(@PathVariable Long id) {
+        List<Register> registers = this.registerService.getAllRegistersByPlantationId(id);
+        return ResponseEntity.ok(new RegisterAllByPlantation(registers));
+    }
+
 
 }

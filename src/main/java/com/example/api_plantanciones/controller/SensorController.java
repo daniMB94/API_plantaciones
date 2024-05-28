@@ -4,6 +4,7 @@ package com.example.api_plantanciones.controller;
 import com.example.api_plantanciones.dto.sensor.SensorHumTemAvg;
 import com.example.api_plantanciones.model.Sensor;
 import com.example.api_plantanciones.service.SensorService;
+import org.apache.coyote.Response;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,10 +53,10 @@ public class SensorController {
     }
 
     @GetMapping("/id/{id}/average/humidity/temperature/date/{initialD}/{finalD}")
-    public SensorHumTemAvg tempYHumeMediaPorFecha(@PathVariable Long id,
-                                                  @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date initialD,
-                                                  @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date finalD) {
-        return new SensorHumTemAvg(this.sensorService.tempYHumeMediaPorFecha(id, initialD, finalD));
+    public ResponseEntity<SensorHumTemAvg> tempYHumeMediaPorFecha(@PathVariable Long id,
+                                           @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date initialD,
+                                           @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date finalD) {
+        return ResponseEntity.ok(new SensorHumTemAvg(this.sensorService.tempYHumeMediaPorFecha(id, initialD, finalD)));
     }
 
 
