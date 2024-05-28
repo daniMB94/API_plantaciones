@@ -65,8 +65,4 @@ public class PlantationServiceImpl implements PlantationService {
         this.repository.deleteAll();
     }
 
-    @Override
-    public List<Register> plantationAllRegisters(Long id) {
-        return List.of();
-    }
 }

@@ -1,12 +1,15 @@
 package com.example.api_plantanciones.controller;
 
 
+import com.example.api_plantanciones.dto.plantation.PlantationAvgHumTemByDate;
 import com.example.api_plantanciones.dto.register.RegisterAllByPlantation;
 import com.example.api_plantanciones.model.Register;
 import com.example.api_plantanciones.service.RegisterService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -52,5 +55,16 @@ public class RegisterController {
         return ResponseEntity.ok(new RegisterAllByPlantation(registers));
     }
 
+    @GetMapping("/all/byPlantationId/{id}/date/{date}")
+    public ResponseEntity<RegisterAllByPlantation> getAllRegistersByPlantationId(@PathVariable Long id, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        List<Register> registers = this.registerService.getAllRegistersByPlantationId(id);
+        List<Register> registersByDate = this.registerService.allRegistersByDate(registers, date);
+        return ResponseEntity.ok(new RegisterAllByPlantation(registersByDate));
+    }
+
+    @GetMapping("/average/humidityAndTemperature/byPlantationId/{id}/date/{date}")
+    public ResponseEntity<PlantationAvgHumTemByDate> plantationAvgHumTemByDate(@PathVariable Long id, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        return ResponseEntity.ok(this.registerService.plantationAvgHumTempByDate(id, date));
+    }
 
 }

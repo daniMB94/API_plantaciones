@@ -1,12 +1,13 @@
 package com.example.api_plantanciones.service;
 
+import com.example.api_plantanciones.dto.plantation.PlantationAvgHumTemByDate;
 import com.example.api_plantanciones.model.Register;
 import com.example.api_plantanciones.model.Sensor;
 import com.example.api_plantanciones.repository.RegisterRepository;
 import com.example.api_plantanciones.repository.SensorRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -75,4 +76,34 @@ public class RegisterServiceImpl implements RegisterService {
         // Llamamos al método creado en el repositorio de register
         return repository.findAllBySensorIdIn(sensorIds);
     }
+
+    public List<Register> allRegistersByDate(List<Register> registers, Date date) {
+        return this.repository.findAllByDateOfDataRegistration(date);
+    }
+
+    @Override
+    public PlantationAvgHumTemByDate plantationAvgHumTempByDate(Long plantationId, Date date) {
+        Long sumaHum = 0L;
+        Long sumaTem = 0L;
+        Integer contador = 0;
+        List<Register> registersByPlantationId = this.getAllRegistersByPlantationId(plantationId);
+        List<Register> registerFiltered = registersByPlantationId.stream()
+                .filter(register -> register.getDateOfDataRegistration().equals(date))
+                .collect(Collectors.toList());
+        if(registerFiltered.size() >= 0) {
+            for (Register register : registerFiltered) {
+                contador += 1;
+                sumaHum += register.getHumidity();
+                sumaTem += register.getTemperature();
+            }
+        } else {
+            return null;
+        }
+
+        Long avgHum = sumaHum / contador;
+        Long avgTem = sumaTem / contador;
+        return new PlantationAvgHumTemByDate(plantationId, avgHum, avgTem);
+    }
+
+
 }

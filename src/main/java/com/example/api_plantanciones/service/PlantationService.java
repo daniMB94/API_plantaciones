@@ -22,7 +22,5 @@ public interface PlantationService {
     void deleteById(Long id);
     void deleteAll();
 
-//    Other queries
-    List<Register> plantationAllRegisters(Long id);
 
 }
