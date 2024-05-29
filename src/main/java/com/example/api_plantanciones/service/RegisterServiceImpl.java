@@ -85,8 +85,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public PlantationAvgHumTemByDate plantationAvgHumTempByDate(Long plantationId, Date date) {
-        Long sumaHum = 0L;
-        Long sumaTem = 0L;
+        Double sumaHum = 0d;
+        Double sumaTem = 0d;
         Integer contador = 0;
         List<Register> registersByPlantationId = this.getAllRegistersByPlantationId(plantationId);
         // Esta parte la he sacado totalmente de CHAT GPT porque no sabía como hacer un stream() para comparar fechas
@@ -105,8 +105,8 @@ public class RegisterServiceImpl implements RegisterService {
             return null;
         }
 
-        Long avgHum = sumaHum / contador;
-        Long avgTem = sumaTem / contador;
+        Double avgHum = sumaHum / contador;
+        Double avgTem = sumaTem / contador;
         return new PlantationAvgHumTemByDate(plantationId, avgHum, avgTem);
     }
 

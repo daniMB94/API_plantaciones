@@ -14,8 +14,8 @@ public class Register {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long temperature;
-    private Long humidity;
+    private Double temperature;
+    private Double humidity;
     private Date dateOfDataRegistration;
     private LocalTime timeOfDataRegistration;
 
@@ -27,7 +27,7 @@ public class Register {
     public Register() {
     }
 
-    public Register(Long id, Long temperature, Long humidity, Date dateOfDataRegistration, LocalTime timeOfDataRegistration, Sensor sensor) {
+    public Register(Long id, Double temperature, Double humidity, Date dateOfDataRegistration, LocalTime timeOfDataRegistration, Sensor sensor) {
         this.id = id;
         this.temperature = temperature;
         this.humidity = humidity;
@@ -44,19 +44,19 @@ public class Register {
         this.id = id;
     }
 
-    public Long getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Long temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 
-    public Long getHumidity() {
+    public Double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Long humidity) {
+    public void setHumidity(Double humidity) {
         this.humidity = humidity;
     }
 

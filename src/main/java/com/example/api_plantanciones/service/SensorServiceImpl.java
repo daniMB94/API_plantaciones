@@ -77,8 +77,8 @@ public class SensorServiceImpl implements SensorService {
         if(optionalSensor.isPresent()) {
             Sensor sensor = optionalSensor.get();
             List<Register> registros = sensor.getRegisters();
-            Long sumaTemp = 0L;
-            Long sumaHume = 0L;
+            Double sumaTemp = 0d;
+            Double sumaHume = 0d;
             Integer contador = 0;
             for(Register registro : registros){
                 if(registro.getDateOfDataRegistration().after(initialDate)){
@@ -88,8 +88,8 @@ public class SensorServiceImpl implements SensorService {
                 }
 
             }
-            Long mediaTemp = sumaTemp/contador;
-            Long mediaHume = sumaHume/contador;
+            Double mediaTemp = sumaTemp/contador;
+            Double mediaHume = sumaHume/contador;
             return "Entre el " + initialDate + " y " + finalDate + " la temperatura media ha sido " + mediaTemp + " grados centígrados y la humedad media ha sido del " + mediaHume + "%";
         }
     return "";
@@ -102,16 +102,16 @@ public class SensorServiceImpl implements SensorService {
         if(optionalSensor.isPresent()) {
             Sensor sensor = optionalSensor.get();
             List<Register> registros = sensor.getRegisters();
-            Long sumaTemp = 0L;
-            Long sumaHume = 0L;
+            Double sumaTemp = 0d;
+            Double sumaHume = 0d;
             Integer contador = 0;
             for(Register registro : registros){
                 sumaTemp += registro.getTemperature();
                 sumaHume += registro.getHumidity();
                 contador += 1;
             }
-            Long mediaTemp = sumaTemp/contador;
-            Long mediaHume = sumaHume/contador;
+            Double mediaTemp = sumaTemp/contador;
+            Double mediaHume = sumaHume/contador;
             return new SensorHumTemAvgHist(sensorId, mediaTemp, mediaHume);
         }
         return null;
