@@ -115,5 +115,17 @@ public class RegisterServiceImpl implements RegisterService {
         return this.repository.findAllBySensorId(sensorId);
     }
 
+    @Override
+    public List<Register> findAllRegisterBySensorIdAndDate(Long sensorId, Date date) {
+        List<Register> registersBySensor = this.findAllRegisterBySensorId(sensorId);
+        // Esta parte la he sacado totalmente de CHAT GPT porque no sabía como hacer un stream() para comparar fechas
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        List<Register> registerFiltered = registersBySensor.stream()
+                .filter(register -> register.getDateOfDataRegistration().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().equals(localDate))
+                .collect(Collectors.toList());
+        // Fin del stream
+        return registerFiltered;
+    }
+
 
 }

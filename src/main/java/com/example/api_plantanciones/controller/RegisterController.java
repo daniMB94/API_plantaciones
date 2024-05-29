@@ -72,4 +72,9 @@ public class RegisterController {
         return ResponseEntity.ok(this.registerService.findAllRegisterBySensorId(id));
     }
 
+    @GetMapping("/all/bySensorId/{id}/date/{date}")
+    public ResponseEntity<List<Register>> allRegisterBySensorIdAndDate(@PathVariable Long id, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        return ResponseEntity.ok(this.registerService.findAllRegisterBySensorIdAndDate(id, date));
+    }
+
 }

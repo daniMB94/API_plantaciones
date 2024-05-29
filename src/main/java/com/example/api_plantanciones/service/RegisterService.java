@@ -19,4 +19,5 @@ public interface RegisterService {
     List<Register> allRegistersByDate(List<Register> registers, Date date);
     PlantationAvgHumTemByDate plantationAvgHumTempByDate(Long plantationId, Date date);
     List<Register> findAllRegisterBySensorId(Long sensorId);
+    List<Register> findAllRegisterBySensorIdAndDate(Long sensorId, Date date);
 }

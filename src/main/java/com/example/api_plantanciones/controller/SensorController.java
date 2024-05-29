@@ -2,6 +2,7 @@ package com.example.api_plantanciones.controller;
 
 
 import com.example.api_plantanciones.dto.sensor.SensorHumTemAvg;
+import com.example.api_plantanciones.dto.sensor.SensorHumTemAvgHist;
 import com.example.api_plantanciones.model.Sensor;
 import com.example.api_plantanciones.service.SensorService;
 import org.apache.coyote.Response;
@@ -59,7 +60,10 @@ public class SensorController {
         return ResponseEntity.ok(new SensorHumTemAvg(this.sensorService.tempYHumeMediaPorFecha(id, initialD, finalD)));
     }
 
-
+    @GetMapping("/average/temperatureAndHumidity/sensorId/{id}")
+    public ResponseEntity<SensorHumTemAvgHist> tempYHumeMediaPorFecha(@PathVariable Long id) {
+        return ResponseEntity.ok(this.sensorService.temYHumeMediaHistorica(id));
+    }
 
 
 }

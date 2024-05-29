@@ -1,5 +1,6 @@
 package com.example.api_plantanciones.service;
 
+import com.example.api_plantanciones.dto.sensor.SensorHumTemAvgHist;
 import com.example.api_plantanciones.model.Plantation;
 import com.example.api_plantanciones.model.Register;
 import com.example.api_plantanciones.model.Sensor;
@@ -92,5 +93,27 @@ public class SensorServiceImpl implements SensorService {
             return "Entre el " + initialDate + " y " + finalDate + " la temperatura media ha sido " + mediaTemp + " grados centígrados y la humedad media ha sido del " + mediaHume + "%";
         }
     return "";
+    }
+
+    @Override
+    public SensorHumTemAvgHist temYHumeMediaHistorica(Long sensorId) {
+        Optional<Sensor> optionalSensor = this.repository.findById(sensorId);
+
+        if(optionalSensor.isPresent()) {
+            Sensor sensor = optionalSensor.get();
+            List<Register> registros = sensor.getRegisters();
+            Long sumaTemp = 0L;
+            Long sumaHume = 0L;
+            Integer contador = 0;
+            for(Register registro : registros){
+                sumaTemp += registro.getTemperature();
+                sumaHume += registro.getHumidity();
+                contador += 1;
+            }
+            Long mediaTemp = sumaTemp/contador;
+            Long mediaHume = sumaHume/contador;
+            return new SensorHumTemAvgHist(sensorId, mediaTemp, mediaHume);
+        }
+        return null;
     }
 }

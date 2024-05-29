@@ -1,5 +1,6 @@
 package com.example.api_plantanciones.service;
 
+import com.example.api_plantanciones.dto.sensor.SensorHumTemAvgHist;
 import com.example.api_plantanciones.model.Sensor;
 
 import java.util.Date;
@@ -15,4 +16,5 @@ public interface SensorService {
 
     //    Consultas específicas
     String tempYHumeMediaPorFecha(Long sensorId, Date initialDate, Date finalDate);
+    SensorHumTemAvgHist temYHumeMediaHistorica (Long sensorId);
 }
