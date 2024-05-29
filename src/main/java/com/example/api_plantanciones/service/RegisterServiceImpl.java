@@ -110,5 +110,10 @@ public class RegisterServiceImpl implements RegisterService {
         return new PlantationAvgHumTemByDate(plantationId, avgHum, avgTem);
     }
 
+    @Override
+    public List<Register> findAllRegisterBySensorId(Long sensorId) {
+        return this.repository.findAllBySensorId(sensorId);
+    }
+
 
 }

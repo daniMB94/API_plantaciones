@@ -67,4 +67,9 @@ public class RegisterController {
         return ResponseEntity.ok(this.registerService.plantationAvgHumTempByDate(id, date));
     }
 
+    @GetMapping("/all/bySensorId/{id}")
+    public ResponseEntity<List<Register>> allRegistersBySensorId(@PathVariable Long id) {
+        return ResponseEntity.ok(this.registerService.findAllRegisterBySensorId(id));
+    }
+
 }

@@ -12,4 +12,5 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
     List<Register> findAllBySensorIdIn (List<Long> sensorIds);
 
     List<Register> findAllByDateOfDataRegistration(Date date);
+    List<Register> findAllBySensorId(Long sensorId);
 }
