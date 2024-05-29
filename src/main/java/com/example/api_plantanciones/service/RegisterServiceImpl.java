@@ -7,6 +7,8 @@ import com.example.api_plantanciones.repository.RegisterRepository;
 import com.example.api_plantanciones.repository.SensorRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -87,9 +89,12 @@ public class RegisterServiceImpl implements RegisterService {
         Long sumaTem = 0L;
         Integer contador = 0;
         List<Register> registersByPlantationId = this.getAllRegistersByPlantationId(plantationId);
+        // Esta parte la he sacado totalmente de CHAT GPT porque no sabía como hacer un stream() para comparar fechas
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         List<Register> registerFiltered = registersByPlantationId.stream()
-                .filter(register -> register.getDateOfDataRegistration().equals(date))
+                .filter(register -> register.getDateOfDataRegistration().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().equals(localDate))
                 .collect(Collectors.toList());
+        // Fin del stream()
         if(registerFiltered.size() >= 0) {
             for (Register register : registerFiltered) {
                 contador += 1;
